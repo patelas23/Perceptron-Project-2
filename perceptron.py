@@ -6,9 +6,6 @@ class Perceptron:
 
     MAX_ITE = 5000
     
-    
-
-
     def __init__(self, weights, learning_rate=0.3, ite=200, ):
         self.alpha = learning_rate
         self.ite = ite # number of training cycles
@@ -64,7 +61,7 @@ class Perceptron:
         print("False Positives: ", self.false_positives)
         print("False Negatives: ", self.false_negatives)
 
-        
+
 
     # Iterative function to train perceptron over a specified portion of the data
     # IN -  ni: number of inputs
@@ -102,7 +99,7 @@ class Perceptron:
             print("Total error: ", te)
 
             # Stopping criterion
-            if(te < stopCrit):
+            if(te < stopCrit or iteration >= self.MAX_ITE):
                 return self.weights
 
     # Function to update weights (refactoring from above)

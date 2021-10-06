@@ -1,6 +1,7 @@
 from matplotlib import pyplot as plt
 from numpy.polynomial.polynomial import polyfit
 from sklearn import preprocessing
+from perceptron import Perceptron
 import numpy as np
 import pandas as pd
 
@@ -17,7 +18,7 @@ ite = 500 # number of training cycles
 data_path = input("Enter filename for dataset: ")
 
 # TODO: instantiate Perceptron(s)
-soft_perc_a = None
+soft_perc_a = Perceptron(2, )
 soft_perc_b = None
 soft_perc_c = None
 
