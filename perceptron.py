@@ -30,7 +30,7 @@ class Perceptron:
     #       dout: 1D array of desired outputs
     #       train_size: size of training samples
     #       data_size: total size of training samples
-    def train_test(self, ni, pat, dout, train_size, data_size, soft):
+    def test_data(self, ni, pat, dout, train_size, data_size, soft):
         # For each test sample, 
         #   beginning from end of test data to end of dataset
         ou = [0] * data_size - train_size # Array to store output
@@ -59,12 +59,12 @@ class Perceptron:
             elif(ou[pattern] == -1 and dout[pattern] == 1):
                 self.false_negatives += 1
 
+        print("True Positives: ", self.true_positives)
+        print("True Negatives: ", self.true_negatives)
+        print("False Positives: ", self.false_positives)
+        print("False Negatives: ", self.false_negatives)
 
-
-
-            
-
-
+        
 
     # Iterative function to train perceptron over a specified portion of the data
     # IN -  ni: number of inputs
@@ -73,7 +73,7 @@ class Perceptron:
     #       stopCrit: maximum error before stopping
     #       train_size: number of samples to use for testing
     #       data_size: number of samples in entire dataset    
-    def train(self, ni, pat, dout, stopCrit, train_size, data_size, soft=False):
+    def train_data(self, ni, pat, dout, stopCrit, train_size, data_size, soft=False):
         # For each training cycle
         for iteration in range(0, self.ite):
             ou = [0] * train_size # Temporary empty array to store output
@@ -103,11 +103,11 @@ class Perceptron:
 
             # Stopping criterion
             if(te < stopCrit):
-                return 0
+                return self.weights
 
-    # Function to validate perceptron classification and calculate errors
-    def test(self):
-        pass
+    # Function to update weights (refactoring from above)
+    def learning_cycle(self, ni):
+        net = 0
 
     def printData(self, iteration, pattern, net, err, learn, ww):
         ww_formatted = [ '%.2f' % elem for elem in ww]
