@@ -14,12 +14,7 @@ def sign(net):
     else:
         return -1
 
-def printData(iteration, pattern, net, err, learn, ww):
-    ww_formatted = [ '%.2f' % elem for elem in ww]
-    print("ite= ", iteration, ' pat= ', pattern, ' net= ', round(net, 5), 
-        ' error= ', err, ' lrn= ', learn, ' weights= ', ww_formatted)
-
-ite = 8 # number of training cycles
+ite = 500 # number of training cycles
 
 
 data_path = input("Enter filename for dataset: ")
@@ -42,30 +37,6 @@ df[[0,1]] = scaler.fit_transform(df[[0,1]])
 x = np.array(df[0])
 y = np.array(df[1])
 z = np.array(data[2])
-
-i = 0
-for zi in z:
-    # If car is small
-    if (zi == 0):
-        # print("here in if!")
-        # if car was identified as large
-        if is_above([df[0][i], df[1][i]], lob_b, lob_a):
-            false_negatives += 1
-        # Else- car was correctly identified as small
-        else: 
-            true_positives += 1
-    # Else if car is large
-    elif (zi == 1):
-        if is_above([df[0][i], df[1][i]], lob_b, lob_a):
-            true_negatives += 1
-        else:
-            false_positives += 1
-    i += 1
-
-print("True Positives: " + str(true_positives))
-print("True Negatives: " + str(true_negatives))
-print("False Positives: " + str(false_positives))
-print("False Negatives: " + str(false_negatives))
 
 # Create scatter plot and display it to screen
 plt.scatter(x, y, c=z)

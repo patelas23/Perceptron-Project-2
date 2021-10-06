@@ -109,7 +109,7 @@ class Perceptron:
     def test(self):
         pass
 
-    def printData(iteration, pattern, net, err, learn, ww):
+    def printData(self, iteration, pattern, net, err, learn, ww):
         ww_formatted = [ '%.2f' % elem for elem in ww]
         print("ite= ", iteration, ' pat= ', pattern, ' net= ', round(net, 5), 
             ' error= ', err, ' lrn= ', learn, ' weights= ', ww_formatted)
