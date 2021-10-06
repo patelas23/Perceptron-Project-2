@@ -11,13 +11,6 @@ DATA_SET_A = "groupA.txt"
 DATA_SET_B = "groupB.txt"
 DATA_SET_C = "groupC.txt"
 
-# In class Perceptron training Example
-def sign(net):
-    if net >= 0:
-        return 1
-    else:
-        return -1
-
 ite = 500 # number of training cycles
 
 
@@ -48,7 +41,6 @@ z = np.array(data[2])
 # TODO: Run perceptron on each dataset, using both hard and soft activation
 # TODO: Plot corresponding line for each perceptron 
 #   y = mx + b //Matlab desired form
-
 
 # Create scatter plot and display it to screen
 plt.scatter(x, y, c=z)
