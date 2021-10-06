@@ -1,0 +1,98 @@
+import math
+import numpy as np
+import random as rand
+
+class Perceptron:
+
+    MAX_ITE = 5000
+
+    def __init__(self, weights, learning_rate=0.3, ite=200, ):
+        self.alpha = learning_rate
+        self.ite = ite # number of training cycles
+        self.np = 400 # number of patterns
+        self.activator = self.sign
+
+        # Initialize weights with values between -0.5 and 0.5
+        self.weights = [rand.random()/-2, rand.random()/-2]
+
+    # Iterative function for testing current weights against a set of inputs
+    # IN -  ni: number of inputs per sample
+    #       pat: 2D array of inputs
+    #       dout: 1D array of desired outputs
+    #       train_size: size of training samples
+    #       data_size: total size of training samples
+    def train_test(self, ni, pat, dout, train_size, data_size):
+        # For each test sample, 
+        #   beginning from end of test data to end of dataset
+        for _ in range():
+            # For each data point in the sample
+            for _ in range():
+                # Multiply weights and points
+                # Determine whether the sample was classified 
+
+                pass
+            pass
+        pass
+
+
+
+    # Iterative function to train perceptron over a specified portion of the data
+    # IN -  ni: number of inputs
+    #       pat: 2D array of inputs
+    #       dout: 1D array of desired outputs 
+    #       stopCrit: maximum error before stopping
+    #       train_size: number of samples to use for testing
+    #       data_size: number of samples in entire dataset    
+    def train(self, ni, pat, dout, stopCrit, train_size, data_size, soft=False):
+        # For each training cycle
+        for iteration in range(0, self.ite):
+            ou = [0]*self.np # Temporary empty array to store output
+            # For each row in training set
+            for pattern in range(0, train_size):
+                te = 0 # Total error
+                net = 0 
+                # For each input
+                for i in range(0, ni):
+                    net = net + self.weights[i]*pat[pattern][i]
+
+                # Use activation function
+                if(soft):
+                    ou[pattern] = self.softActivator(net)
+                else:
+                    ou[pattern] = self.sign(net)
+
+
+                err = dout[pattern] - ou[pattern]
+                te = te + (err ** 2)
+
+                learn = self.alpha * err
+
+                 # Update weights
+                for i in range(0, ni):
+                    self.weights[i] = self.weights[i] + learn*pat[pattern][i]
+
+            print("Total error: ", te)
+
+            # Stopping criterion
+            if(te < stopCrit):
+                return 0
+
+    # Function to validate perceptron classification and calculate errors
+    def test(self):
+        pass
+
+    def printData(iteration, pattern, net, err, learn, ww):
+        ww_formatted = [ '%.2f' % elem for elem in ww]
+        print("ite= ", iteration, ' pat= ', pattern, ' net= ', round(net, 5), 
+            ' error= ', err, ' lrn= ', learn, ' weights= ', ww_formatted)
+
+    
+    def softActivator(self, net):
+        k = 0.2
+        return 2/(1 + math.exp(-2*k*net) ) -1
+             
+
+    def sign(self, net):
+        return np.where(net>=0, 1, -1)
+
+    

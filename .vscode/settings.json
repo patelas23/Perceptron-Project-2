@@ -1,0 +1,5 @@
+{
+    "python.envFile": "${workspaceFolder}/.aivenv",
+    "python.jediEnabled": true,
+    "python.languageServer": "Jedi",
+}
