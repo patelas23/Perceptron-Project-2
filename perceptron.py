@@ -5,6 +5,9 @@ import random as rand
 class Perceptron:
 
     MAX_ITE = 5000
+    
+    
+
 
     def __init__(self, weights, learning_rate=0.3, ite=200, ):
         self.alpha = learning_rate
@@ -15,24 +18,51 @@ class Perceptron:
         # Initialize weights with values between -0.5 and 0.5
         self.weights = [rand.random()/-2, rand.random()/-2]
 
+        # Initialize counters for confusion stats
+        self.true_positives = 0
+        self.true_negatives = 0
+        self.false_positives = 0
+        self.false_negatives = 0
+
     # Iterative function for testing current weights against a set of inputs
     # IN -  ni: number of inputs per sample
     #       pat: 2D array of inputs
     #       dout: 1D array of desired outputs
     #       train_size: size of training samples
     #       data_size: total size of training samples
-    def train_test(self, ni, pat, dout, train_size, data_size):
+    def train_test(self, ni, pat, dout, train_size, data_size, soft):
         # For each test sample, 
         #   beginning from end of test data to end of dataset
-        for _ in range():
+        ou = [0] * data_size - train_size # Array to store output
+        for pattern in range(train_size, data_size):
+            net = 0
             # For each data point in the sample
-            for _ in range():
+            for i in range(0, ni):
                 # Multiply weights and points
-                # Determine whether the sample was classified 
+                net = net + self.weights[i] * pat[pattern][i] 
 
-                pass
-            pass
-        pass
+            if(soft):
+                ou[pattern] = self.softActivator(net)
+            else:
+                ou[pattern] = self.activator(net)
+
+            # Determine whether the sample was classified correctly
+            if((ou[pattern] == 1) and (dout[pattern] == 1)):
+                self.true_positives += 1
+
+            elif(ou[pattern] == -1 and dout[pattern] == -1):
+                self.true_negatives += 1
+
+            elif(ou[pattern] == 1 and dout[pattern] == -1):
+                self.false_positives += 1
+            
+            elif(ou[pattern] == -1 and dout[pattern] == 1):
+                self.false_negatives += 1
+
+
+
+
+            
 
 
 
@@ -46,7 +76,7 @@ class Perceptron:
     def train(self, ni, pat, dout, stopCrit, train_size, data_size, soft=False):
         # For each training cycle
         for iteration in range(0, self.ite):
-            ou = [0]*self.np # Temporary empty array to store output
+            ou = [0] * train_size # Temporary empty array to store output
             # For each row in training set
             for pattern in range(0, train_size):
                 te = 0 # Total error
@@ -61,12 +91,10 @@ class Perceptron:
                 else:
                     ou[pattern] = self.sign(net)
 
-
                 err = dout[pattern] - ou[pattern]
                 te = te + (err ** 2)
 
                 learn = self.alpha * err
-
                  # Update weights
                 for i in range(0, ni):
                     self.weights[i] = self.weights[i] + learn*pat[pattern][i]

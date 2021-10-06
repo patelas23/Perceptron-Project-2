@@ -19,13 +19,8 @@ def printData(iteration, pattern, net, err, learn, ww):
     print("ite= ", iteration, ' pat= ', pattern, ' net= ', round(net, 5), 
         ' error= ', err, ' lrn= ', learn, ' weights= ', ww_formatted)
 
-# ite = 8 # number of training cycles
-# nump = 2 # number of patterns
-# ni = 3 # number of augmented inputs 
-# alpha = 0.1 # learning constant
-# ww = [1, 3, -3] # array of weights
-# pat = ([1, 2, 1], [2, 1, 1]) # patterns as 2D array
-# dout = (-1, 1) # Desired output as 1D array
+ite = 8 # number of training cycles
+
 
 data_path = input("Enter filename for dataset: ")
 
