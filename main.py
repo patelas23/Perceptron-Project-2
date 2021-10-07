@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 
-DATA_PATH = 'groupC.txt'
+DATA_PATH = 'groupA.txt'
 
 DATA_SET_A = "groupA.txt"
 DATA_SET_B = "groupB.txt"
@@ -45,7 +45,8 @@ z = np.array(data[2])
 
 # TODO: Run perceptron on each dataset, using both hard and soft activation
 # Training first soft perceptron on 75% of the dataset
-soft_perc_a.train_data(2, data_pattern, z, 0.00005, 3000, 4000, True)
+trained_weights = soft_perc_a.train_data(2, data_pattern, z, 0.00005, 3000, 4000, True)
+# soft_perc_a.test_data()
 # TODO: Plot corresponding line for each perceptron 
 #   y = mx + b //Matlab desired form
 

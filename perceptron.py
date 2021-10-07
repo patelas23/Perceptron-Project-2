@@ -13,7 +13,7 @@ class Perceptron:
         self.activator = self.sign
 
         # Initialize weights with values between -0.5 and 0.5
-        self.weights = [rand.random()/-2, rand.random()/-2]
+        self.weights = [rand.randint(-500, 500)/100.00, rand.randint(-500, 500)/100.00, rand.randint(-500, 500)/100.00]
 
         # Initialize counters for confusion stats
         self.true_positives = 0
@@ -36,7 +36,7 @@ class Perceptron:
             # For each data point in the sample
             for i in range(0, ni):
                 # Multiply weights and points
-                net = net + self.weights[i] * pat[i][pattern] 
+                net = net + self.weights[i] * pat[i][pattern] - self.weights[2]
 
             if(soft):
                 ou[pattern] = self.softActivator(net)
@@ -93,7 +93,7 @@ class Perceptron:
 
                 learn = self.alpha * err
                  # Update weights
-                for i in range(0, ni-1):
+                for i in range(0, ni):
                     self.weights[i] = self.weights[i] + learn*pat[i][pattern]
 
             print("Total error: ", te)
