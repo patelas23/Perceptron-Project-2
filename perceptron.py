@@ -36,7 +36,7 @@ class Perceptron:
             # For each data point in the sample
             for i in range(0, ni):
                 # Multiply weights and points
-                net = net + self.weights[i] * pat[pattern][i] 
+                net = net + self.weights[i] * pat[i][pattern] 
 
             if(soft):
                 ou[pattern] = self.softActivator(net)
