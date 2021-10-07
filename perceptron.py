@@ -79,8 +79,8 @@ class Perceptron:
                 te = 0 # Total error
                 net = 0 
                 # For each input
-                for i in range(0, ni):
-                    net = net + self.weights[i]*pat[pattern][i]
+                for i in range(0, ni-1):
+                    net = net + self.weights[i]*pat[i][pattern]
 
                 # Use activation function
                 if(soft):
@@ -93,7 +93,7 @@ class Perceptron:
 
                 learn = self.alpha * err
                  # Update weights
-                for i in range(0, ni):
+                for i in range(0, ni-1):
                     self.weights[i] = self.weights[i] + learn*pat[i][pattern]
 
             print("Total error: ", te)
