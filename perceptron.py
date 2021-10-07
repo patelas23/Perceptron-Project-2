@@ -6,7 +6,7 @@ class Perceptron:
 
     MAX_ITE = 5000
     
-    def __init__(self, weights, learning_rate=0.3, ite=200, ):
+    def __init__(self, learning_rate=0.3, ite=200):
         self.alpha = learning_rate
         self.ite = ite # number of training cycles
         self.np = 400 # number of patterns
@@ -94,7 +94,7 @@ class Perceptron:
                 learn = self.alpha * err
                  # Update weights
                 for i in range(0, ni):
-                    self.weights[i] = self.weights[i] + learn*pat[pattern][i]
+                    self.weights[i] = self.weights[i] + learn*pat[i][pattern]
 
             print("Total error: ", te)
 
